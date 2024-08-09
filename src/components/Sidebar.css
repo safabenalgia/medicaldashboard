@@ -1,0 +1,13 @@
+/* Styles pour la barre latérale */
+
+.sidebar {
+    width: 250px; /* Largeur de la barre latérale */
+    background-color: #f4f4f4; /* Couleur de fond */
+    height: 100%; /* Hauteur complète de la page */
+    position: fixed; /* Position fixe pour garder la barre latérale en place */
+    left: 0;
+    top: 2;
+    padding: 10px; /* Espacement intérieur */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre pour un effet de profondeur */
+  }
+  
