@@ -1,11 +1,12 @@
 /* Styles globaux pour le formulaire */
 .form-container {
+    
     background-color: #fff; /* Couleur de fond du formulaire */
     padding: 20px; /* Espacement intérieur */
     border-radius: 8px; /* Coins arrondis */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour un effet de profondeur */
     max-width: 800px; /* Largeur maximale du formulaire */
-    margin: 20px auto; /* Centre le formulaire et ajoute un espacement vertical */
+    margin: 50px auto 20px 450px; /* Centre le formulaire avec un espacement vertical augmenté en haut */
 }
 
 /* Styles pour les champs du formulaire */
@@ -61,9 +62,9 @@ button[type="submit"]:hover {
 input[type="file"] {
     padding: 0; /* Supprime le padding par défaut */
 }
+
 .confirmation-message {
     color: green;
     font-weight: bold;
     margin-bottom: 1em;
-  }
-  
+}

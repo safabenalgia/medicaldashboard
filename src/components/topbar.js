@@ -5,7 +5,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 
 function TopBar() {
   return (
-    <AppBar position="static">
+    <AppBar position="fixed" style={{ zIndex: 1100 }}>
       <Toolbar>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
           Medical Dashboard

@@ -21,11 +21,9 @@ body {
     justify-content: space-between;
     z-index: 1000; /* Assure que la barre supérieure est au-dessus du contenu */
 }
-
-/* Conteneur principal pour la mise en page */
 .main-container {
     display: flex;
-    margin-top: 64px; /* Décalage pour faire de la place pour la barre supérieure fixe */
+    margin-top: 64px; /* Décalage pour la hauteur de la barre supérieure */
 }
 
 /* Styles pour la barre latérale */
@@ -43,9 +41,11 @@ body {
 
 /* Styles pour le contenu principal */
 .content {
-    margin-left: 250px; /* Décalage pour faire de la place pour la barre latérale */
-    padding: 20px; /* Espacement intérieur pour le contenu */
-    background-color: #eaeaea; /* Couleur de fond pour le contenu principal */
-    overflow: auto; /* Permet de faire défiler le contenu si nécessaire */
-    flex-grow: 1; /* Assure que le contenu occupe l'espace restant */
+    margin-left: 250px; /* Space for the Sidebar */
+    padding: 20px; /* Padding for content */
+    margin-top: 64px; /* Space for the fixed TopBar */
+    background-color: #eaeaea; /* Background color for content */
+    min-height: calc(100vh - 64px); /* Ensures the content fills the space */
+    overflow: auto; /* Allows scrolling if content is too large */
 }
+

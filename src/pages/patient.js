@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './patient.css'; 
 
 function Patients() {
@@ -24,7 +26,6 @@ function Patients() {
     vieSeul: '',
     pdf: null,
   });
-  const [message, setMessage] = useState(''); // État pour le message de confirmation
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,18 +45,30 @@ function Patients() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Convertir les valeurs de texte aux valeurs numériques pour marie et vie_seul
+    // Validation des champs (simple exemple)
+    if (!formData.pdf) {
+      toast.error('Veuillez sélectionner un fichier PDF.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
     const maritalStatusMap = {
-      'celibataire': 0, // 0 pour célibataire
-      'marie': 1        // 1 pour marié
+      'celibataire': 0,
+      'marie': 1
     };
 
     const vieSeulMap = {
-      'oui': 1,        // 1 pour oui
-      'non': 0        // 0 pour non
+      'oui': 1,
+      'non': 0
     };
 
-    // Créez un FormData pour envoyer les données du formulaire avec le fichier
     const formDataToSend = new FormData();
     Object.keys(formData).forEach(key => {
       if (key === 'pdf') {
@@ -63,9 +76,9 @@ function Patients() {
           formDataToSend.append(key, formData[key]);
         }
       } else if (key === 'maritalStatus') {
-        formDataToSend.append(key, maritalStatusMap[formData[key]] || 0); // Valeur par défaut en cas d'erreur
+        formDataToSend.append(key, maritalStatusMap[formData[key]] || 0);
       } else if (key === 'vieSeul') {
-        formDataToSend.append(key, vieSeulMap[formData[key]] || 0); // Valeur par défaut en cas d'erreur
+        formDataToSend.append(key, vieSeulMap[formData[key]] || 0);
       } else {
         formDataToSend.append(key, formData[key]);
       }
@@ -102,27 +115,33 @@ function Patients() {
         pdf: null,
       });
 
-      // Afficher un message de confirmation
-      setMessage('Envoi réussi !');
-
-      // Masquer le message après quelques secondes
-      setTimeout(() => {
-        setMessage('');
-      }, 3000);
+      // Afficher une popup de succès
+      toast.success('Envoi réussi !', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (error) {
       console.error(error);
-      // Afficher un message d'erreur en cas de problème
-      setMessage('Erreur lors de l\'envoi des données.');
-      setTimeout(() => {
-        setMessage('');
-      }, 3000);
+      toast.error('Erreur lors de l\'envoi des données.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
   return (
     <div className="form-container">
       <h2>Patients Management</h2>
-      {message && <p className="confirmation-message">{message}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Matricule:</label>
@@ -214,6 +233,7 @@ function Patients() {
         </div>
         <button type="submit">Soumettre</button>
       </form>
+      <ToastContainer />
     </div>
   );
 }
